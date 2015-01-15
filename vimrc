@@ -14,7 +14,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 
 " UI Additions
-Bundle 'mutewinter/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Rykka/colorv.vim'
 
@@ -98,8 +98,8 @@ if has('gui_running')
     set macmeta
   endif
 
-  if has('gui_gnome')
-    set guifont=Monospace\ Bold\ 12
+  if has('gui_gnome') || has('gui_gtk2')
+    set guifont=Droid\ Sans\ Mono\ 11
   endif
 
   if has('gui_win32') || has('gui_win32s')
@@ -165,6 +165,9 @@ set showmatch   " Show matching brackets.
 set matchtime=2 " How many tenths of a second to blink
 " Show invisible characters
 set list
+" Indent guide lines
+" let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter * :IndentGuidesEnable
 
 " Show trailing spaces as dots and carrots for extended lines.
 " From Janus, http://git.io/PLbAlw
@@ -219,6 +222,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " NERDTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 nnoremap <silent> <C-f> :call FindInNERDTree()<CR>
+let NERDTreeShowHidden=1
 
 " CtrlP
 " map to CtrlP finder
