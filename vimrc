@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'ZoomWin'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-easymotion'
 
 " UI Additions
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -75,6 +76,9 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'mathml.vim'
 Bundle 'editorconfig/editorconfig-vim'
 
+" Themes
+Bundle 'chriskempson/base16-vim'
+
 " Automatically detect file types. (must turn on after Vundle)
 filetype plugin indent on
 
@@ -99,7 +103,7 @@ if has('gui_running')
   endif
 
   if has('gui_gnome') || has('gui_gtk2')
-    set guifont=Droid\ Sans\ Mono\ 11
+    set guifont=Droid\ Sans\ Mono\ 10
   endif
 
   if has('gui_win32') || has('gui_win32s')
