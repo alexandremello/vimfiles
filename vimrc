@@ -15,7 +15,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 
 " UI Additions
-Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Yggdroot/indentLine'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Rykka/colorv.vim'
 
@@ -85,44 +85,10 @@ filetype plugin indent on
 " turn on syntax highlighting
 syntax on
 
-if has('gui_running')
-  set ts=2 sw=2 et
-  colorscheme railscasts2
-
-  set guioptions=egmrt
-  call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-
-  if has('gui_macvim')
-    " Custom Menlo font for Powerline
-    " https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts
-    set guifont=Menlo\ for\ Powerline:h12
-
-    " Remove this line if you don't want to install the custom patched font
-    let g:Powerline_symbols = 'fancy'
-    set macmeta
-  endif
-
-  if has('gui_gnome') || has('gui_gtk2')
-    set guifont=Droid\ Sans\ Mono\ 10
-  endif
-
-  if has('gui_win32') || has('gui_win32s')
-    set guifont=Consolas:h12
-    set enc=utf-8
-  endif
-else
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-    colorscheme railscasts2
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-      colorscheme railscasts2
-    else
-      colorscheme default
-    endif
-  endif
-endif
+let base16colorspace=256
+set background=dark
+colorscheme base16-tomorrow
+set guifont=DejaVu\ Sans\ Mono\ 12
 
 " UI
 set ruler          " Ruler on
@@ -170,8 +136,7 @@ set matchtime=2 " How many tenths of a second to blink
 " Show invisible characters
 set list
 " Indent guide lines
-" let g:indent_guides_enable_on_vim_startup = 1
-autocmd VimEnter * :IndentGuidesEnable
+let g:indentLine_enable = 1
 
 " Show trailing spaces as dots and carrots for extended lines.
 " From Janus, http://git.io/PLbAlw
@@ -205,6 +170,11 @@ set backspace=indent,eol,start
 " add some line space for easy reading
 set linespace=4
 
+" handle swap and backup files
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
 " make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
 inoremap <C-L> <C-O>:nohls<CR>
@@ -236,12 +206,6 @@ nnoremap <leader>b :CtrlPBuffer<cr>
 " Ensure max height isn't too large. (for performance)
 let g:ctrlp_max_height = 10
 let g:ctrlp_custom_ignore = '\v[\/](vendor\/ruby|.log|.git|.hg|.svn)$'
-
-" Indent Guides
-let g:indent_guides_enable_on_vim_startup=0
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#252525 ctermbg=4
 
 " Use tabs for Makefiles
 autocmd FileType make setlocal noexpandtab tabstop=4 shiftwidth=4
